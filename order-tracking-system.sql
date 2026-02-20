@@ -51,7 +51,6 @@ insert into products(product_name, sku, price) values
 ('USB-C Charging Adapter', 'USB-C-ADP', 1499.00),
 ('Ergonomic Office Chair', 'CHR-ERGO', 8500.00),
 ('Dual Band WiFi Router', 'RTR-DB-WIFI', 2899.00);
-select * from products;
 insert into warehouse_stock(warehouse_id, product_id, quantity) values
 (1, 1, 200),(1, 2, 180),(1, 3, 185),(1, 4, 200),
 (1, 5, 200),(1, 6, 180),(1, 7, 185),(1, 8, 200),
@@ -67,5 +66,8 @@ select * from warehouse_stock;
 select * from orders;
 select * from order_items;
 alter table orders
-add column total_amount decimal(10,2) default 0;
-update orders set total_amount= 41495.00 where order_id =1; 
+add column total_amount decimal(10,2) default 0; 
+ALTER TABLE order_items
+ADD unit_price DECIMAL(10,2) after quantity;
+ALTER TABLE order_items
+RENAME COLUMN price TO total_price;
