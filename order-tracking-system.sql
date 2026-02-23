@@ -51,41 +51,23 @@ insert into products(product_name, sku, price) values
 ('USB-C Charging Adapter', 'USB-C-ADP', 1499.00),
 ('Ergonomic Office Chair', 'CHR-ERGO', 8500.00),
 ('Dual Band WiFi Router', 'RTR-DB-WIFI', 2899.00);
-select * from products;
 insert into warehouse_stock(warehouse_id, product_id, quantity) values
-(1, 1, 200),
-(1, 2, 180),
-(1, 3, 185),
-(1, 4, 200),
-(1, 5, 200),
-(1, 6, 180),
-(1, 7, 185),
-(1, 8, 200),
-(2, 1, 200),
-(2, 2, 180),
-(2, 3, 185),
-(2, 4, 200),
-(2, 5, 220),
-(2, 6, 170),
-(2, 7, 165),
-(2, 8, 200),
-(3, 1, 150),
-(3, 2, 180),
-(3, 3, 175),
-(3, 4, 100),
-(3, 5, 200),
-(3, 6, 180),
-(3, 7, 185),
-(3, 8, 200),
-(4, 1, 200),
-(4, 2, 180),
-(4, 3, 185),
-(4, 4, 200),
-(4, 5, 200),
-(4, 6, 160),
-(4, 7, 145),
-(4, 8, 150);
+(1, 1, 200),(1, 2, 180),(1, 3, 185),(1, 4, 200),
+(1, 5, 200),(1, 6, 180),(1, 7, 185),(1, 8, 200),
+(2, 1, 100),(2, 2, 130),(2, 3, 145),(2, 4, 150),
+(2, 5, 220),(2, 6, 190),(2, 7, 175),(2, 8, 160),
+(3, 1, 130),(3, 2, 150),(3, 3, 165),(3, 4, 120),
+(3, 5, 190),(3, 6, 120),(3, 7, 155),(3, 8, 210),
+(4, 1, 135),(4, 2, 110),(4, 3, 125),(4, 4, 130),
+(4, 5, 150),(4, 6, 140),(4, 7, 115),(4, 8, 140);
+select * from warehouse;
+select * from products;
 select * from warehouse_stock;
 select * from orders;
 select * from order_items;
-truncate warehouse;
+alter table orders
+add column total_amount decimal(10,2) default 0; 
+ALTER TABLE order_items
+ADD unit_price DECIMAL(10,2) after quantity;
+ALTER TABLE order_items
+RENAME COLUMN price TO total_price;
